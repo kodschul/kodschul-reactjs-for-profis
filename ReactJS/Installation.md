@@ -1,4 +1,4 @@
-# React Mini-Übung
+# React Installation
 
 Willkommen zu dieser Mini-Übung, die dir einen schnellen Einstieg in die Welt von React bietet. Folge den Schritten unten, um dein erstes React-Projekt zu erstellen und einige grundlegende Experimente durchzuführen.
 
