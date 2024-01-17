@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import LoginPageView from "./LoginPage.view";
 
@@ -30,4 +30,25 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+const TestComponent = ({ name, removeUser }) => {
+  return <div onClick={removeUser}>Hello World: {name} </div>;
+};
+
+const withLogin = (Component) => {
+  return function withLoginComponent(props) {
+    return (
+      <div>
+        <Component
+          removeUser={() => {
+            console.log("remove user from cookies");
+          }}
+          {...props}
+        />
+      </div>
+    );
+  };
+};
+
+const NewLoginPage = withLogin(TestComponent);
+
+export default NewLoginPage;
