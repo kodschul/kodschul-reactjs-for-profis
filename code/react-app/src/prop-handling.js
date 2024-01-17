@@ -1,12 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-const fetchUserFromStore = () => {
-  return { name: "Franz", isLoggedIn: false };
+const useUser = () => {
+  return { name: "Franz", isLoggedIn: true, signOut: () => null };
 };
 
 const App = () => {
-  const user = fetchUserFromStore();
+  const user = useUser();
 
   return (
     <div className="App">
