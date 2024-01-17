@@ -11,7 +11,6 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
 
         <Counter count={defaultCount} />
-        <Counter count={defaultCount} />
 
         <input
           type="number"
@@ -26,8 +25,8 @@ function App() {
   );
 }
 
-const Counter = ({ count: defaultCount }) => {
-  const [count, setCount] = useState(0);
+const useCounter = (defaultCount) => {
+  const [count, setCount] = useState(defaultCount);
 
   // mutable objects between re-renders
   const copyValueRef = useRef(0);
@@ -48,6 +47,12 @@ const Counter = ({ count: defaultCount }) => {
       clearInterval(interval);
     };
   }, []);
+
+  return { copyValueRef, count, setCount };
+};
+
+const Counter = ({ count: defaultCount = 0 }) => {
+  const { count, setCount, copyValueRef } = useCounter(defaultCount);
 
   return (
     <>
