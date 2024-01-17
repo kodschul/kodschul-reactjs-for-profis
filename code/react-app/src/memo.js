@@ -1,7 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
-import DOMPurify from "dompurify";
+import { useState, useEffect } from "react";
 
 const App = () => {
   return (
@@ -19,18 +18,23 @@ const TodoApp = () => {
   const [todos, setTodos] = useState([]);
   const [itemText, setItemText] = useState("");
 
+  useEffect(() => {
+    let _items = [];
+    for (let i = 0; i < 1000; i++) {
+      _items.push(i);
+    }
+
+    setTodos(_items);
+  }, []);
+
   const renderTodo = (todo, i) => {
-    return (
-      <div key={i.toString()}>
-        <div
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(todo) }}
-        ></div>
-      </div>
-    );
+    console.log("todo: " + i);
+    return <div key={i.toString()}>{todo}</div>;
   };
 
   const addToDo = () => setTodos([...todos, itemText]);
 
+  console.log("re-render");
   return (
     <div>
       <div>
