@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
   const [defaultCount, setDefaultCount] = useState(0);
@@ -10,6 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
+        <Counter count={defaultCount} />
         <Counter count={defaultCount} />
 
         <input
@@ -28,12 +29,16 @@ function App() {
 const Counter = ({ count: defaultCount }) => {
   const [count, setCount] = useState(0);
 
+  // mutable objects between re-renders
+  const copyValueRef = useRef(0);
+
   // useEffect(() => {
   //   setCount(defaultCount);
   // }, [defaultCount]);
 
+  // let copyValue = copyValueRef.c;
+
   useEffect(() => {
-    console.log("TEST");
     let interval = setInterval(
       () => setCount((prevCount) => prevCount + 1),
       1000
@@ -49,6 +54,32 @@ const Counter = ({ count: defaultCount }) => {
       <button onClick={() => setCount(count + 1)}>+</button>
       <p>{count}</p>
       <button onClick={() => setCount(count - 1)}>-</button>
+
+      <button
+        onClick={() => {
+          copyValueRef.current = count;
+          alert(copyValueRef.current);
+        }}
+      >
+        Copy value
+      </button>
+      <button onClick={() => alert(copyValueRef.current)}>Show me</button>
+
+      <hr />
+      <button
+        onClick={() => {
+          copyValueRef.current++;
+        }}
+      >
+        +
+      </button>
+      <button
+        onClick={() => {
+          copyValueRef.current--;
+        }}
+      >
+        -
+      </button>
     </>
   );
 };
