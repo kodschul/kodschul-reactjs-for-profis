@@ -37,14 +37,14 @@ const TestComponent = ({ name, removeUser }) => {
 const withLogin = (Component) => {
   return function withLoginComponent(props) {
     return (
-      <div>
+      <>
         <Component
           removeUser={() => {
             console.log("remove user from cookies");
           }}
           {...props}
         />
-      </div>
+      </>
     );
   };
 };
