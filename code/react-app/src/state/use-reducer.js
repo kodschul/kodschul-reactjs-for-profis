@@ -1,6 +1,8 @@
-import logo from "./logo.svg";
-import "./App.css";
+import logo from "../logo.svg";
+import "../App.css";
 import { useEffect, useRef, useState, useReducer } from "react";
+
+import { produce } from "immer";
 
 function App() {
   return (
@@ -17,15 +19,23 @@ function App() {
 const useCounterReducer = (initialState) =>
   useReducer(counterReducer, initialState);
 
-const counterReducer = (state, action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return { ...state, count: state.count + (state.count >= 5 ? 10 : 1) };
-    case "DECREMENT":
-      return { ...state, count: state.count - (state.count >= 5 ? 10 : 1) };
-    default:
-      return state;
-  }
+const counterReducer = (currentState, action) => {
+  const nextState = produce(currentState, (state) => {
+    switch (action.type) {
+      case "INCREMENT":
+        state.count += state.count >= 5 ? 10 : 1;
+        break;
+
+      case "DECREMENT":
+        state.count -= state.count >= 5 ? 10 : 1;
+        break;
+
+      default:
+        break;
+    }
+  });
+
+  return nextState;
 };
 
 const Counter = () => {
@@ -40,7 +50,7 @@ const Counter = () => {
     dispatch({ type: "DECREMENT" });
   };
 
-  console.log("re-render");
+  console.log(state);
 
   return (
     <>
