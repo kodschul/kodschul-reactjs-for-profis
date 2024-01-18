@@ -14,9 +14,31 @@ const App = () => {
   );
 };
 
+const TodoItemInput = ({ addToDo }) => {
+  const [value, setValue] = useState("");
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Todo eingeben"
+      />
+      <button
+        onClick={() => {
+          addToDo(value);
+          setValue("");
+        }}
+      >
+        Add
+      </button>
+    </div>
+  );
+};
+
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
-  const [itemText, setItemText] = useState("");
 
   useEffect(() => {
     let _items = [];
@@ -32,21 +54,12 @@ const TodoApp = () => {
     return <div key={i.toString()}>{todo}</div>;
   };
 
-  const addToDo = () => setTodos([...todos, itemText]);
+  const addToDo = (todo) => setTodos([todo, ...todos]);
 
   console.log("re-render");
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          value={itemText}
-          onChange={(e) => setItemText(e.target.value)}
-          placeholder="Todo eingeben"
-        />
-        <button onClick={addToDo}>Add</button>
-      </div>
-
+      <TodoItemInput addToDo={addToDo} />
       {todos.map(renderTodo)}
     </div>
   );
