@@ -12,6 +12,7 @@
     "web-vitals": "^2.1.4",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.5",
+    "swr": "^2.2.4",
     "dompurify": "^3.0.8",
     "immer": "^10.0.3",
     "react-query": "^3.39.3",
