@@ -22,12 +22,14 @@ const Characters = () => {
   return (
     <div>
       Characters
-      {characters?.map?.((character) => (
-        <div key={character.id} style={{ margin: 20 }}>
-          <img src={character.image} width={100} />
-          <div>{character.name}</div>
-        </div>
-      ))}
+      <div style={{ display: "flex" }}>
+        {characters?.map?.((character) => (
+          <div key={character.id} style={{ margin: 20 }}>
+            <img src={character.image} width={100} />
+            <div>{character.name}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
