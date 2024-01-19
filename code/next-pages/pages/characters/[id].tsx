@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 const fetchCharacter = async (characterId) => {
-  await new Promise((r) => setTimeout(r, 2000));
   const response = await fetch(`/api/proxy?id=${characterId}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
