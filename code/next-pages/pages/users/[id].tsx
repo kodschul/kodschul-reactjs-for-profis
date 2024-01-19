@@ -4,12 +4,12 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 
 export default function User() {
-  const params = useParams();
+  const router = useRouter();
 
   return (
     <main>
       <div>
-        Welcome user: <b>{params?.id}</b>
+        Welcome user: <b>{router.query?.id}</b>
       </div>
     </main>
   );
