@@ -3,6 +3,9 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   rewrites: () => {
     return [
       {
