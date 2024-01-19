@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-export default function Home() {
+export default function About() {
   return (
     <main>
-      <div>Hello World</div>
+      <div>About us</div>
     </main>
   );
 }
