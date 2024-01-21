@@ -51,12 +51,14 @@ const useCounter = (defaultCount) => {
   return { copyValueRef, count, setCount };
 };
 
-const Counter = ({ count: defaultCount = 0 }) => {
+export const Counter = ({ count: defaultCount = 0 }) => {
   const { count, setCount, copyValueRef } = useCounter(defaultCount);
 
   return (
     <>
-      <button onClick={() => setCount(count + 1)}>+</button>
+      <button testID="click-me" onClick={() => setCount(count + 1)}>
+        +
+      </button>
       <p>{count}</p>
       <button onClick={() => setCount(count - 1)}>-</button>
 
