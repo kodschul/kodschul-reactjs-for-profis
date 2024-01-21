@@ -1,7 +1,7 @@
 import logo from "../logo.svg";
 import "../App.css";
 
-// import SlowComponent from "./SlowComponent";
+import SlowComponent from "./SlowComponent";
 import { Suspense, lazy, useState } from "react";
 
 const App = () => {
